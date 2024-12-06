@@ -1,4 +1,4 @@
-# CSCI596-FinalProject : Empirical Analysis of neural network training using data parallelism
+# Empirical Analysis of neural network training using data parallelism
 
 # Introduction 
 
@@ -18,7 +18,7 @@ In model parallelism, the model is split across processing units, with different
 
 ## Scope of the project
 
-This project investigates the empirical training time performance of neural networks on multi-core CPUs using MPI versus training on a single GPU. By leveraging data parallelism, the study evaluates the efficiency of splitting data across multiple CPU cores while comparing it to the GPU's optimized training capabilities. Due to the complexity of implementing model parallelism, the focus is limited to data parallelism, where identical models process different data batches, providing a comprehensive evaluation of training time under both configurations and insights into their practical application in machine learning.
+This project investigates the empirical training time performance of neural networks using the typical sequential data training, data parallelism using MPI as well as training on a single GPU . By leveraging data parallelism, the study evaluates the efficiency of splitting data across multiple CPU cores while comparing it to the GPU's optimized training capabilities. Due to the complexity of implementing model parallelism, the focus is limited to data parallelism, where identical models process different data batches, providing a comprehensive evaluation of training time under both configurations and insights into their practical application in machine learning.
 
 ## Future Work
 
