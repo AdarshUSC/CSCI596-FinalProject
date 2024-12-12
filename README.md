@@ -20,6 +20,19 @@ In model parallelism, the model is split across processing units, with different
 
 This project investigates the empirical training time performance of neural networks using the typical sequential data training, data parallelism using MPI as well as training on a single GPU . By leveraging data parallelism, the study evaluates the efficiency of splitting data across multiple CPU cores while comparing it to the GPU's optimized training capabilities. Due to the complexity of implementing model parallelism, the focus is limited to data parallelism, where identical models process different data batches, providing a comprehensive evaluation of training time under both configurations and insights into their practical application in machine learning.
 
+## Experimentation
+
+To investigate the impact of data parallelism on training time, I designed an experiment using the MNIST dataset, a popular benchmark for machine learning models. I implemented a custom data generator that allows selecting subsets of the dataset, ranging from 10,000 samples to the entire dataset of 70,000 samples. The MNIST data, originally consisting of 784 features (28x28 images), was reduced to 400 dimensions using Principal Component Analysis (PCA) to optimize computational performance. Additionally, the data was normalized for consistency. The dataset was then saved in a .mat file for efficient loading and usage during training. This flexible setup enabled a detailed comparison of training times across varying dataset sizes, providing insight into the scalability of the implemented approach. The data preparation code is detailed above for reproducibility.
+
+For the experiment, I utilized data parallelism with four processes, a limitation imposed by my personal laptop's memory capacity. The comparison was performed between training the model with and without parallelism across all dataset sizes, aiming to highlight the potential benefits of leveraging parallel processing for large-scale data.
+
+## Findings 
+
+The graph illustrates the training time comparison between executing a task with and without data parallelism across varying dataset sizes. As observed, the training time increases consistently with dataset size for both methods. However, the use of data parallelism significantly reduces the training time across all dataset sizes. Without parallelism, the training time exhibits a steeper growth rate, demonstrating higher computational cost as dataset size increases. In contrast, the curve representing parallel execution grows at a slower rate, indicating improved scalability and efficiency. The gap between the two lines widens with larger datasets, emphasizing the advantage of parallelism in handling computationally intensive tasks for large-scale datasets. This comparison clearly highlights the performance benefits of data parallelism in reducing training time and improving processing efficiency, especially for extensive datasets.
+
+<img width="988" alt="Screenshot 2024-12-11 at 11 01 37 PM" src="https://github.com/user-attachments/assets/811007d2-7e24-414c-9360-ace3e1f1de9d" />
+
+
 ## Future Work
 
 An interesting direction for future work would be exploring meta-learners, where each processing unit is assigned a different model to train. This approach allows the simultaneous training of diverse models, avoiding the need for sequential training and enabling the exploitation of the strengths of multiple models at once. The results from these models could then be aggregated to improve overall performance. This would not only enhance efficiency but also provide valuable insights into how combining different model architectures could benefit training processes in large-scale machine learning tasks.
