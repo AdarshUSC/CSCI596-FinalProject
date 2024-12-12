@@ -2,6 +2,7 @@ import numpy as np
 import scipy.io as sio
 from sklearn.datasets import fetch_openml
 from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
 
 def prepare_mnist_data():
     # Fetch MNIST data
@@ -16,7 +17,7 @@ def prepare_mnist_data():
     y = y[:70000]
 
     # Reduce feature dimensions to 400 (20x20 pixels)
-    from sklearn.decomposition import PCA
+    
     pca = PCA(n_components=400)
     X_reduced = pca.fit_transform(X)
 
