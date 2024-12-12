@@ -10,7 +10,6 @@ def prepare_mnist_data():
     X, y = mnist.data, mnist.target
 #     print(len(X))
 
-    # Convert labels to 1-based indexing to match the original code
     y = y.astype(int) + 1
 
     X = X[:70000]
