@@ -18,7 +18,7 @@ In model parallelism, the model is split across processing units, with different
 
 ## Scope of the project
 
-This project investigates the empirical training time performance of neural networks using the typical sequential data training, data parallelism using MPI as well as training on a single GPU . By leveraging data parallelism, the study evaluates the efficiency of splitting data across multiple CPU cores while comparing it to the GPU's optimized training capabilities. Due to the complexity of implementing model parallelism, the focus is limited to data parallelism, where identical models process different data batches, providing a comprehensive evaluation of training time under both configurations and insights into their practical application in machine learning.
+This project explores the empirical training time performance of neural networks using traditional sequential training and data parallelism with MPI. By leveraging data parallelism, the study assesses the efficiency of distributing data across multiple CPU cores. Given the complexity of implementing model parallelism, the scope is focused on data parallelism, where identical models process separate data batches. This approach provides a detailed evaluation of training times under both configurations and offers valuable insights into their practical applications in machine learning.
 
 ## Experimentation
 
@@ -31,6 +31,34 @@ For the experiment, I utilized data parallelism with four processes, a limitatio
 The graph illustrates the training time comparison between executing a task with and without data parallelism across varying dataset sizes. As observed, the training time increases consistently with dataset size for both methods. However, the use of data parallelism significantly reduces the training time across all dataset sizes. Without parallelism, the training time exhibits a steeper growth rate, demonstrating higher computational cost as dataset size increases. In contrast, the curve representing parallel execution grows at a slower rate, indicating improved scalability and efficiency. The gap between the two lines widens with larger datasets, emphasizing the advantage of parallelism in handling computationally intensive tasks for large-scale datasets. This comparison clearly highlights the performance benefits of data parallelism in reducing training time and improving processing efficiency, especially for extensive datasets.
 
 <img width="988" alt="Screenshot 2024-12-11 at 11 01 37 PM" src="https://github.com/user-attachments/assets/811007d2-7e24-414c-9360-ace3e1f1de9d" />
+
+
+
+The following images illustrate the time taken per epoch for varying dataset sizes across both neural networks, comparing training with and without data parallelism.
+
+<img width="990" alt="Screenshot 2024-12-12 at 11 13 46 PM" src="https://github.com/user-attachments/assets/f58c6412-1684-40ee-8dbc-50d86bf5d085" />
+
+
+
+
+<img width="994" alt="Screenshot 2024-12-12 at 11 14 06 PM" src="https://github.com/user-attachments/assets/80829815-3aaf-4303-8183-fc8b2086a0bc" />
+
+
+
+
+<img width="835" alt="Screenshot 2024-12-12 at 11 14 18 PM" src="https://github.com/user-attachments/assets/5cb93433-7103-41e6-a011-4512b1860f31" />
+
+
+
+
+## Try it yourself!
+
+1. Create a virtual environment and install the necessary packages by using the commmand "pip install -r requirements.txt". I used Python 3.11 for development, but you can use other versions, provided there are no compatibility issues between the Python version and the package versions.
+2. To generate the dataset run the data_generation.py code using the command "python data_generation.py" . Note that you can change the size of the dataset here by changing the values on line 15 and 16.
+3. To initialize the weights of the neural network, run the nn_weight_intializer.py file using the command "python nn_weight_intializer.py"
+   4.a. Now to train the model in distributed mode, use the command "MNISTNN_PARALLEL=yes mpiexec -n 4 python model_training.py"
+   4.b. To train the model without data parallelism, use the command "MNISTNN_PARALLEL=no python model_training.py"
+   (Note : There are multiple alternatives to these two commands, I have just mentioned one for documentation purposes)
 
 
 ## Future Work
