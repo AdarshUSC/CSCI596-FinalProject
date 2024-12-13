@@ -34,7 +34,7 @@ The graph illustrates the training time comparison between executing a task with
 
 
 
-The following images illustrate the time taken per epoch for varying dataset sizes across both neural networks, comparing training with and without data parallelism.
+The following images illustrate the time taken per epoch for varying dataset sizes across both neural networks, trained with and without data parallelism. It is worth noting that the primary goal of this project is not to fine-tune the model for task-specific accuracy but to evaluate the benefits of data parallelism. To this end, the models were run with standard hyperparameter values, prioritizing simplicity over exhaustive optimization. Additionally, the accuracies achieved by both models are comparable for the respective dataset sizes, further validating the correctness of the implementation for both configurations.
 
 <img width="990" alt="Screenshot 2024-12-12 at 11 13 46 PM" src="https://github.com/user-attachments/assets/f58c6412-1684-40ee-8dbc-50d86bf5d085" />
 
@@ -58,6 +58,7 @@ The following images illustrate the time taken per epoch for varying dataset siz
 3. To initialize the weights of the neural network, run the nn_weight_intializer.py file using the command "python nn_weight_intializer.py"
    4.a. Now to train the model in distributed mode, use the command "MNISTNN_PARALLEL=yes mpiexec -n 4 python model_training.py"
    4.b. To train the model without data parallelism, use the command "MNISTNN_PARALLEL=no python model_training.py"
+   
    (Note : There are multiple alternatives to these two commands, I have just mentioned one for documentation purposes)
 
 
